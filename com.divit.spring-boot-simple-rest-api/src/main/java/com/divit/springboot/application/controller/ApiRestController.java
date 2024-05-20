@@ -1,5 +1,6 @@
 package com.divit.springboot.application.controller;
 
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
@@ -30,8 +31,15 @@ public class ApiRestController {
 							.filter(candidate -> candidate.getSkillsSet().contains(skill.toLowerCase()))
 							.collect(Collectors.toList()));
 		}
-
 		return ResponseEntity.ok(candidateList);
 	}
 
+	@GetMapping(value = "/randomNumber")
+	public ResponseEntity<?> generateRandomNumber() {
+		log.info("Generating random number");
+		//random number generator
+		Random rand = new Random();
+		int rand_int = rand.nextInt(1000);
+        return ResponseEntity.ok(rand_int);
+    }
 }
